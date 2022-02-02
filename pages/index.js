@@ -9,6 +9,7 @@ import styles from '../styles/Home.module.css';
 export default function Home() {
   const hero = require('../images/hero.png');
 
+
   const[walletConnected,setWalletConnected] = useState(false);
   const[presaleStarted,setPresaleStarted] = useState(false);
   const[presaleEnded,setPresaleEnded] = useState(false);
@@ -269,9 +270,8 @@ export default function Home() {
       `}
       </style>
       <Head>
-        <title>NFT</title>
-        <meta name="description" content="Whitelist-Dapp" />
-        <link rel="icon" href="./favicon.ico" />
+        <title>CrptoDevs | NFT</title>
+        <meta name="description" content="CryptoDevs NFTs" />
       </Head>
       <div className={styles.wrapper}>
       <div className={styles.main}>
