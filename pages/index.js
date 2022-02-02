@@ -28,7 +28,7 @@ export default function Home() {
           signer
         );
         const tx = await whitelistContract.presaleMint({
-          value:utils.parseEther("0.001")
+          value:utils.parseEther("0.001"),
         });
         setLoading(true);
         await tx.wait();
@@ -36,7 +36,7 @@ export default function Home() {
         window.alert("NFT Minted!!");
 
     }catch(e){
-      console.log(e);
+      console.error(e);
     }
   }
   const publicMint =async () => {
@@ -56,7 +56,7 @@ export default function Home() {
         window.alert("NFT Minted!!");
 
     }catch(e){
-      console.log(e);
+      console.error(e);
     }
   }
   const connectWallet = async () => {
@@ -95,7 +95,7 @@ export default function Home() {
         abi,
         provider
       );
-      const _presaleStarted = await nftContract.presaleStart();
+      const _presaleStarted = await nftContract.presaleStarted();
       if(!_presaleStarted){
         await getOwner();
       }
@@ -103,7 +103,7 @@ export default function Home() {
       setPresaleStarted(_presaleStarted);
       return _presaleStarted;
     }catch(e){
-      console.log(e);
+      console.error(e);
       return false;
     }
   }
@@ -115,7 +115,7 @@ export default function Home() {
         abi,
         provider
       );
-      const _presaleEnded = await nftContract.presaleEnd();
+      const _presaleEnded = await nftContract.presaleEnded();
       const hasEnded = _presaleEnded.lt(Math.floor(Date.now()/1000));
 
       if(hasEnded){
@@ -125,7 +125,7 @@ export default function Home() {
       }
       return hasEnded;
     }catch(e){
-      console.log(e);
+      console.error(e);
       return false;
     }
   }
@@ -146,7 +146,7 @@ export default function Home() {
       }
     }
     catch(e){
-      console.log(e);
+      console.error(e.message);
     }
   }
 
@@ -162,7 +162,7 @@ export default function Home() {
       setTokenIdsMinted(_tokenIds.toString());
     }
     catch(e){
-      console.log(e);
+      console.error(e);
     }
   }
 
@@ -207,6 +207,10 @@ export default function Home() {
           }
         }
       }, 5*1000); 
+
+      setInterval(async function () {
+        await getTokenIdsMinted();
+      }, 5 * 1000);
     }
   },[walletConnected]);
 
